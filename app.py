@@ -43,7 +43,7 @@ def validar_matrices_streamlit(rpt_matrices_file, justificacion_file):
                 desperdicio_coincide = desperdicio_just == desperdicio_rpt
                 todo_valido = consumo_coincide and desperdicio_coincide
                 
-                resultado = '✅ VÁLIDO' if todo_valido else '❌ INCONSISTENTE'
+                resultado = '✅ CORRECTO' if todo_valido else '❌ INCONSISTENTE'
                 
                 if not todo_valido:
                     errores_detalle.append({
@@ -90,24 +90,24 @@ def validar_matrices_streamlit(rpt_matrices_file, justificacion_file):
 def main():
     st.set_page_config(
         page_title="Validador de Matrices",
-        page_icon="📊",
+        page_icon="🚀",
         layout="wide"
     )
     
-    st.title("📊 Validador de Matrices")
-    st.markdown("Valida archivos **Rpt_Matrices.xlsx** vs **JUSTIFICACION MATRICES NUEVAS.xlsx**")
+    st.title("🚀 Verificador de Matrices")
+    st.markdown("Valida Archivos **Informe Jasper** vs **Justificación Matrices** Usuario")
     
     # Sidebar para subir archivos
-    st.sidebar.header("📁 Subir Archivos")
+    st.sidebar.header("📁 Cargar Archivos")
     
     rpt_file = st.sidebar.file_uploader(
-        "Subir Rpt_Matrices.xlsx", 
+        "Subir Rpt_Matrices.xlsx" Jasper, 
         type=['xlsx'],
         help="Archivo con estructura: EMPRESA, CODÍGO PT, DESCRIPCIÓN PT., etc."
     )
     
     justificacion_file = st.sidebar.file_uploader(
-        "Subir JUSTIFICACION MATRICES NUEVAS.xlsx", 
+        "Subir Justificación Matrices Nuevas.xlsx", 
         type=['xlsx'],
         help="Archivo con estructura: CODIGO MATRIZ, CODIGO COMPONENTE, CONSUMO, etc."
     )
@@ -124,12 +124,12 @@ def main():
                     
                     col1, col2, col3 = st.columns(3)
                     
-                    total_validos = len(df_resultados[df_resultados['RESULTADO'] == '✅ VÁLIDO'])
+                    total_validos = len(df_resultados[df_resultados['RESULTADO'] == '✅ CORRECTO'])
                     total_inconsistentes = len(df_resultados[df_resultados['RESULTADO'] == '❌ INCONSISTENTE'])
                     total_no_encontrados = len(df_resultados[df_resultados['RESULTADO'] == '🔍 NO ENCONTRADO'])
                     
                     with col1:
-                        st.metric("✅ Válidos", total_validos)
+                        st.metric("✅ CORRECTO", total_validos)
                     with col2:
                         st.metric("❌ Inconsistentes", total_inconsistentes)
                     with col3:
@@ -174,8 +174,8 @@ def main():
     st.sidebar.markdown("---")
     st.sidebar.subheader("📝 Instrucciones")
     st.sidebar.markdown("""
-    1. Sube **Rpt_Matrices.xlsx**
-    2. Sube **JUSTIFICACION MATRICES NUEVAS.xlsx**  
+    1. Sube **Rpt_Matrices.xlsx** Jasper
+    2. Sube **Justificaciones Matrices Nuevas.xlsx**  
     3. Haz clic en **Ejecutar Validación**
     4. Revisa resultados y descarga el reporte
     """)

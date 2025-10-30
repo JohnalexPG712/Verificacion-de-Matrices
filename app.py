@@ -101,7 +101,7 @@ def main():
     st.sidebar.header("📁 Cargar Archivos")
     
     rpt_file = st.sidebar.file_uploader(
-        "Subir Rpt_Matrices.xlsx" Jasper, 
+        "Subir Rpt_Matrices.xlsx Jasper", 
         type=['xlsx'],
         help="Archivo con estructura: EMPRESA, CODÍGO PT, DESCRIPCIÓN PT., etc."
     )
